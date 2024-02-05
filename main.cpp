@@ -4,7 +4,6 @@
 #include <vector>
 using namespace std;
 
-
 class Matrix // matrix class for general matrixes
 {
 public:
@@ -22,61 +21,45 @@ public:
     {
      for(int i=0;i<Row;++i)
         {
+
         for(int j=0;j<Column;++j)
             {
          cout<<Elements[i][j]<<" ";
+
             }
             cout<<endl;
         }
     }
-
     void dimention() const
     {
         cout<<Row<<'x'<<Column;
     }
-
-
-
-
-
-
-
-
-
     };
 
+
 //  functions for specific matrixes *************************************************************************************
-vector<vector<float>> zeros(int row, int col)
-{
-    vector<vector<float>> elements(row, vector<float>(col, 0)); // Resize the vector
 
-    for (int i = 0; i < row; ++i)
+Matrix ones(int row , int col)
     {
-        for (int j = 0; j < col; ++j)
-        {
-            cout << elements[i][j] << " ";
-        }
-        cout << endl;
+        vector<vector<float>> elements(row, vector<float>(col, 1));
+
+
+
+        return Matrix(elements,row,col);
     }
-    return elements ;
-}
 
-vector<vector<float>> ones(int row, int col)
-{
-    vector<vector<float>> elements(row, vector<float>(col, 1)); // Resize the vector
 
-    for (int i = 0; i < row; ++i)
+Matrix zeros(int row , int col)
     {
-        for (int j = 0; j < col; ++j)
-        {
-            cout << elements[i][j] << " ";
-        }
-        cout << endl;
-    }
-    return elements ;
-}
+        vector<vector<float>> elements(row, vector<float>(col, 0));
 
-vector<vector<float>> eye(int row, int col)
+
+
+        return Matrix(elements,row,col);
+    }
+
+
+Matrix eye(int row, int col)
 {
     vector<vector<float>> elements(row,vector<float>(col,0));
       for (int i = 0; i < row; ++i)
@@ -84,26 +67,39 @@ vector<vector<float>> eye(int row, int col)
         for (int j = 0; j < col; ++j)
         {
             if(i==j){elements[i][j]=1 ;}
-            cout << elements[i][j] << " ";
         }
-        cout << endl;
+
     }
-    return elements ;
+    return Matrix(elements,row,col) ;
 }
 
 /////********************************************************************************************************************
 
 
+
+
+
+
 int main()
 {
-
-    vector<vector<float>> a = zeros(4,4);
-
+/*
+    vector<vector<float>> a = eye(3,3);
     Matrix s(a);
     Matrix b({{1, 2, 3}, {4, 5, 6}, {7, 8, 9}}, 3, 3);
-    s.show();
-    s.dimention();
 
+    s.show();
+
+    b.dimention();
+*/
+
+
+    Matrix a = ones(4,5);
+    a.show();
+    a.dimention();
+    cout<<endl;
+    Matrix b = eye(4,4);
+    b.show();
+    b.dimention();
 
     return 0;
 }
