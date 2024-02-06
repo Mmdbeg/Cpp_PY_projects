@@ -16,7 +16,7 @@ public:
 
 
 public:
-
+// printing matrix ---------------------------------------------------------------
     void show() const
     {
      for(int i=0;i<Row;++i)
@@ -30,21 +30,33 @@ public:
             cout<<endl;
         }
     }
+
+// getting MATRIXs'  DIMENTIONS (EITHER ROW OR COLUMN )
     void dimention() const
     {
         cout<<Row<<'x'<<Column;
     }
+
+        int row()
+    {
+        return Row ;
+    }
+
+        int Col()
+    {
+        return Column ;
+    }
+
+
+
+
     };
 
-
-//  functions for specific matrixes *************************************************************************************
+//  functions for specific matrixes (a member of Matrix class) *************************************************************************************
 
 Matrix ones(int row , int col)
     {
         vector<vector<float>> elements(row, vector<float>(col, 1));
-
-
-
         return Matrix(elements,row,col);
     }
 
@@ -52,9 +64,6 @@ Matrix ones(int row , int col)
 Matrix zeros(int row , int col)
     {
         vector<vector<float>> elements(row, vector<float>(col, 0));
-
-
-
         return Matrix(elements,row,col);
     }
 
@@ -68,31 +77,37 @@ Matrix eye(int row, int col)
         {
             if(i==j){elements[i][j]=1 ;}
         }
-
     }
     return Matrix(elements,row,col) ;
 }
 
+
+Matrix diag(vector<float> elements , int row , int col)
+{
+     vector<vector<float>> elements1(row, vector<float>(col, 0));
+     for (int i = 0 ; i<row ;++i)
+     {
+         for (int j =0 ; j<col ; ++j)
+            {
+                 if (i==j)
+                    {
+                        elements1[i][j]= elements[i] ;
+                    }
+            }
+     }
+     return Matrix(elements1,row,col) ;
+}
+
+
 /////********************************************************************************************************************
-
-
-
-
-
 
 int main()
 {
 /*
-    vector<vector<float>> a = eye(3,3);
-    Matrix s(a);
     Matrix b({{1, 2, 3}, {4, 5, 6}, {7, 8, 9}}, 3, 3);
-
-    s.show();
-
-    b.dimention();
 */
 
-
+    /*
     Matrix a = ones(4,5);
     a.show();
     a.dimention();
@@ -100,8 +115,19 @@ int main()
     Matrix b = eye(4,4);
     b.show();
     b.dimention();
+    int x ;
+    x = b.Col();
+    cout<<endl<<x;
+    */
+    Matrix d = diag({0.222,0.25,3.12},3,3) ;
+    d.show();
+
+
+
+
 
     return 0;
+
 }
 
 
